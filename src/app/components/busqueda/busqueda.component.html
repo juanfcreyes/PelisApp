@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1" >Buscar</span>
+    </div>
+    <input type="text" [(ngModel)]=texto class="form-control" placeholder="Nombre Pelicula" (keyup.enter)="buscarPeliculas()">
+  </div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let pelicula of peliculas">
+      <div class="card mt-3" style="width: 18rem;"> <img class="card-img-top" [src]="urlImage+pelicula.poster_path" width="200px" height="350px" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{pelicula.original_title}}</h5> <a (click)="goToDetalle(pelicula.id)" class="btn btn-primary btn-block">Ver Detalles</a> </div>
+      </div>
+    </div>
+  </div>
+</div>

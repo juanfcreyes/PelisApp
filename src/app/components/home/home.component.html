@@ -1,0 +1,32 @@
+<div class="container" >
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary" [ngClass]="{'active': categoria === 'Cartelera'}" (click)="categoria='Cartelera'; buscarPeliculas(1)">
+    <input type="radio" name="categoria"> Cartelera
+  </label>
+    <label class="btn btn-secondary" [ngClass]="{'active': categoria === 'Populares'}" (click)="categoria='Populares'; buscarPeliculas(1)">
+    <input type="radio" name="categoria" > Populares
+  </label>
+    <label class="btn btn-secondary" [ngClass]="{'active': categoria === 'Ninos'}"
+           (click)="categoria='Ninos'; buscarPeliculas(1)">
+    <input type="radio" name="categoria" > Niños
+  </label>
+  </div>
+
+  <div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [ngClass]="{disabled: pagina - 1 === 0}"> <a class="page-link" (click)="buscarPeliculas(pagina - 1)">Previous</a> </li>
+        <li *ngFor="let i of paginas" class="page-item" [ngClass]="{'active': pagina === i}"><a class="page-link" (click)="buscarPeliculas(i)">{{i}}</a></li>
+        <li class="page-item" [ngClass]="{disabled: pagina + 1 === peliculas.total_pages}"> <a class="page-link" (click)="buscarPeliculas(pagina + 1)">Next</a> </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let pelicula of peliculas">
+      <div class="card mt-3" style="width: 18rem;"> <img class="card-img-top" [src]="urlImage+pelicula.poster_path" width="200px" height="350px" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{pelicula.original_title}}</h5> <a (click)="goToDetalle(pelicula.id)" class="btn btn-primary btn-block">Ver Detalles</a> </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+  <button class="btn btn-danger float-right" (click)="regresar()">Regresar</button>
+  <div class="row">
+    <div class="col-md-4"> <img class="card-img-top" [src]="urlImage+pelicula.poster_path" width="750px" height="500px" alt="Card image cap"> </div>
+    <div class="col-md-8">
+      <h2>{{pelicula.original_title}}</h2>
+      <p>{{pelicula.overview}}</p>
+      <p *ngIf="pelicula.tagline"><strong>Frase Celebre: </strong> {{pelicula.tagline}}</p>
+      <p *ngIf="pelicula.release_date">
+        <strong>Fecha Estreno: </strong> 
+        {{pelicula.release_date}}
+      </p>
+      <p *ngIf="pelicula.genres"><strong>Generos: </strong>
+        <label style="margin-right: 5px" *ngFor="let genero of pelicula.genres">    {{genero.name}}
+        </label>
+      </p>
+      <p *ngIf="pelicula.runtime">
+        <strong>Duraci&oacute;n: </strong>
+        {{pelicula.runtime}} min.
+      </p>
+      <p *ngIf="pelicula.homepage">
+        <strong>P&aacute;gina Oficial:</strong> 
+        <a href="{{pelicula.homepage}}"> {{pelicula.homepage}}</a>
+      </p>
+      <p *ngIf="pelicula.popularity"><strong>Fans: </strong> {{pelicula.popularity}}</p>
+      <div *ngIf="idTrailer !== '' ">
+        <iframe width="420" height="315" [src]="idTrailer | domSeguro:'https://www.youtube.com/embed/'"> </iframe>
+      </div>
+    </div>
+  </div>
+</div>
